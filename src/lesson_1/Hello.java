@@ -57,7 +57,7 @@ public class Hello {
 
         if (trigon(25, 31, 8)) {
             System.out.println("Одно из чисел больше суммы двух других(не треугольник)");
-        }else System.out.println("Ни одно из чисел не больше суммы двух других(треугольник!)");
+        }else System.out.println("Ни одно из  чисел не больше суммы двух других(треугольник!)");
 
         randomNumber(25,12);
 
