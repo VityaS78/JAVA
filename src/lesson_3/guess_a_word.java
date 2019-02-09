@@ -11,35 +11,57 @@ public class guess_a_word {
                 "carrot", "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom",
                 "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
 
-        Random random = new Random();
-        Scanner scanner = new Scanner(System.in);
         String answer;
         int repeat = 0;
         do {
-            String ask = words[random.nextInt(words.length)];
+            String ask = words[makeANumber(words.length)];
             char[] compare = {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'};
             System.out.print("Угадайте слово: ");
             do {
-                answer = scanner.next();
+                answer = enterAWord();
 
                 if (answer.equals(ask)) {
                     System.out.println("Вы угадали!");
                     break;
-                } else if (ask.length() > answer.length()) {
-                    for (int i = 0; i < answer.length(); i++) {
-                        if (ask.charAt(i) == answer.charAt(i)) compare[i] = ask.charAt(i);
-                    }
-                } else {
-                    for (int i = 0; i < ask.length(); i++) {
-                        if (ask.charAt(i) == answer.charAt(i)) compare[i] = ask.charAt(i);
-                    }
                 }
+                compare = showLetters(compare, ask, answer);
                 System.out.println(compare);
                 System.out.print("Попробуйте еще раз: ");
             } while (ask != answer);
             System.out.print("Играем еще раз? 1 если да, иначе нет: ");
-            repeat = scanner.nextInt();
+            repeat = enterANumber();
         } while (repeat == 1);
 
+    }
+
+    public static int makeANumber(int a) {
+        Random random = new Random();
+        int num = random.nextInt(a);
+        return num;
+    }
+
+    public static String enterAWord() {
+        Scanner scanner = new Scanner(System.in);
+        String word = scanner.next();
+        return word;
+    }
+
+    public static int enterANumber() {
+        Scanner scanner = new Scanner(System.in);
+        int num = scanner.nextInt();
+        return num;
+    }
+
+    public static char[] showLetters(char[] a, String ask, String answer) {
+        if (ask.length() > answer.length()) {
+            for (int i = 0; i < answer.length(); i++) {
+                if (ask.charAt(i) == answer.charAt(i)) a[i] = ask.charAt(i);
+            }
+        } else {
+            for (int i = 0; i < ask.length(); i++) {
+                if (ask.charAt(i) == answer.charAt(i)) a[i] = ask.charAt(i);
+            }
+        }
+        return a;
     }
 }
